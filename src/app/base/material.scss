@@ -41,6 +41,10 @@ $employee-company-theme: mat.define-light-theme(
     color: white;
     background: hsl(0, 57%, 49%);
   }
+
+  &.snackbar-message {
+    color: white;
+  }
   .mat-simple-snackbar {
     justify-content: center;
   }

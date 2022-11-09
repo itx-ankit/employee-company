@@ -183,7 +183,7 @@ export class TableGenrateComponent implements OnInit, AfterViewInit {
     const deleteFormData: IFormGenerateInput = {
       formName: '',
       displaySubmitButton: true,
-      submitButtonName: 'Submit',
+      submitButtonName: 'Yes',
       displayCancelButton: true,
       cancelButtonName: 'No',
       message: 'Do you really want to delete this row?',
@@ -192,6 +192,9 @@ export class TableGenrateComponent implements OnInit, AfterViewInit {
         const groupedKey: string = JSON.stringify(data);
         if (groupedKey) {
           this.cacheService.deleteKey(this.uniqueKey.get(groupedKey)!);
+          const index = this.dataSource.data.indexOf(data);
+          this.dataSource.data.splice(index, 1);
+          this.dataSource._updateChangeSubscription();
         }
         this.modal.closeModal(modalUniqueId);
       },

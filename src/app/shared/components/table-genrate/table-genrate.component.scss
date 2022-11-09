@@ -1,8 +1,8 @@
 .table-container {
-  height: 80vh;
+  height: 100%;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
 
   .inner-container {
@@ -10,7 +10,7 @@
     margin: 0 40px;
     border-radius: 8px;
     padding: 2px;
-    min-width: 435px;
+    min-width: 500px;
 
     table {
       width: 100%;

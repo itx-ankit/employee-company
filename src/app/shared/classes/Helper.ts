@@ -33,7 +33,7 @@ export class Helper {
         ? config
         : {
             duration: 2000,
-            panelClass: isError ? 'warning' : '',
+            panelClass: isError ? 'warning' : 'snackbar-message',
             horizontalPosition: 'center',
             verticalPosition: 'bottom',
           }
