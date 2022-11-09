@@ -1,0 +1,162 @@
+<ng-container *ngIf="formGenerateInput && this.formGroup">
+  <form
+    [style.height]="
+      modalService.modalData && modalService.modalData.modalHeightVh
+        ? modalService.modalData.modalHeightVh + 'vh'
+        : ''
+    "
+    [style.width]="
+      modalService.modalData && modalService.modalData.modalWidthVw
+        ? modalService.modalData.modalWidthVw + 'vw'
+        : ''
+    "
+    class="form {{ formGenerateInput.extraClass }}"
+    [formGroup]="formGroup"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="form-container">
+      <ng-container *ngIf="formGenerateInput.formName">
+        <div class="form-name">{{ formGenerateInput.formName }}</div>
+      </ng-container>
+      <ng-container *ngIf="formGenerateInput.message">
+        <div class="form-message">
+          <span> {{ formGenerateInput.message }}</span>
+        </div>
+      </ng-container>
+
+      <!-- Form Field Section -->
+      <div class="form-field">
+        <ng-container *ngFor="let field of formGenerateInput.fields">
+          <ng-container *ngIf="field.type === 'input'">
+            <mat-form-field [appearance]="'outline'" [color]="'accent'">
+              <mat-label>{{ field.label }}</mat-label>
+              <input
+                matInput
+                type="text"
+                [placeholder]="field.placeholder"
+                [required]="field.required ?? false"
+                [name]="field.name"
+                [formControlName]="field.name"
+              />
+
+              <!-- Handling errors -->
+              <ng-container *ngFor="let data of field.validations">
+                <ng-container
+                  *ngIf="
+                    formGroup.get(field.name)!.touched &&
+                    formGroup.get(field.name)!.errors &&
+                    validateField(field.name, data.id)
+                  "
+                >
+                  <mat-error>
+                    {{ data.message }}
+                  </mat-error>
+                </ng-container>
+              </ng-container>
+            </mat-form-field>
+          </ng-container>
+
+          <ng-container *ngIf="field.type === 'date'">
+            <mat-form-field [appearance]="'outline'" [color]="'accent'">
+              <input
+                matInput
+                [min]="field.minDate"
+                [max]="field.maxDate"
+                [formControlName]="field.name"
+                [matDatepicker]="picker"
+                [placeholder]="field.placeholder"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+
+              <!-- Handling errors -->
+              <ng-container *ngFor="let data of field.validations">
+                <ng-container
+                  *ngIf="
+                    formGroup.get(field.name)!.touched &&
+                    formGroup.get(field.name)!.errors &&
+                    validateField(field.name, data.id)
+                  "
+                >
+                  <mat-error>
+                    {{ data.message }}
+                  </mat-error>
+                </ng-container>
+              </ng-container>
+            </mat-form-field>
+          </ng-container>
+
+          <ng-container *ngIf="field.type === 'dropdown'">
+            <mat-form-field appearance="outline" [color]="'accent'">
+              <mat-label>{{ field.label }}</mat-label>
+              <mat-select [formControlName]="field.name">
+                <mat-option *ngFor="let data of field.listData" [value]="data">
+                  {{ data }}
+                </mat-option>
+              </mat-select>
+
+              <!-- Handling errors -->
+              <ng-container *ngFor="let data of field.validations">
+                <ng-container
+                  *ngIf="
+                    formGroup.get(field.name)!.touched &&
+                    formGroup.get(field.name)!.errors &&
+                    validateField(field.name, data.id)
+                  "
+                >
+                  <mat-error>
+                    {{ data.message }}
+                  </mat-error>
+                </ng-container>
+              </ng-container>
+            </mat-form-field>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+
+    <!-- Buttons Section -->
+    <ng-container
+      *ngIf="
+        formGenerateInput.displaySubmitButton ||
+        formGenerateInput.displayCancelButton
+      "
+    >
+      <div class="buttons">
+        <app-button-container>
+          <ng-container *ngIf="formGenerateInput.displayCancelButton">
+            <ng-template appcustomButton>
+              <div class="button-container">
+                <button
+                  mat-flat-button
+                  color="warn"
+                  class="submit-button"
+                  (click)="cancelButton()"
+                >
+                  {{ formGenerateInput.cancelButtonName ?? "Cancel" }}
+                </button>
+              </div>
+            </ng-template>
+          </ng-container>
+          <ng-container *ngIf="formGenerateInput.displaySubmitButton">
+            <ng-template appcustomButton>
+              <div class="button-container">
+                <button
+                  mat-flat-button
+                  color="accent"
+                  class="submit-button"
+                  type="submit"
+                >
+                  {{ formGenerateInput.submitButtonName ?? "Submit" }}
+                </button>
+              </div>
+            </ng-template>
+          </ng-container>
+        </app-button-container>
+      </div>
+    </ng-container>
+  </form>
+</ng-container>

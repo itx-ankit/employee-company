@@ -1,0 +1,69 @@
+<div class="table-container">
+  <div class="inner-container">
+    <!-- Search section -->
+    <div class="search">
+      <div class="input-container">
+        <input matInput (keyup)="search($event.target)" placeholder="Search" />
+      </div>
+    </div>
+
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- Company Name Column -->
+      <ng-container matColumnDef="companyName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Company Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.companyName }}</td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+      </ng-container>
+
+      <!-- Phone Number Column -->
+      <ng-container matColumnDef="phoneNumber">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
+        <td mat-cell *matCellDef="let element">{{ element.phoneNumber }}</td>
+      </ng-container>
+
+      <!-- Created At Column -->
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Created At</th>
+        <td mat-cell *matCellDef="let element">
+          {{ getRepresentableDate(element.createdAt) }}
+        </td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="icon-container">
+            <div
+              (click)="edit(element)"
+              class="edit"
+              appCustomIcon
+              [data]="editIcon"
+            ></div>
+            <div
+              (click)="delete(element)"
+              class="delete"
+              appCustomIcon
+              [data]="deleteIcon"
+            ></div>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      aria-label="Select page of periodic elements"
+    >
+    </mat-paginator>
+  </div>
+</div>

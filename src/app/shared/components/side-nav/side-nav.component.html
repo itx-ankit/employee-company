@@ -1,0 +1,36 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav
+    #sidenav
+    mode="side"
+    [(opened)]="opened"
+    (opened)="events.push('open!')"
+    (closed)="events.push('close!')"
+  >
+    <div
+      class="item-list"
+      [routerLinkActiveOptions]="configRoute"
+      routerLinkActive="router-link-active"
+      routerLink="/company_list"
+    >
+      Company List
+    </div>
+    <div
+      class="item-list"
+      [routerLinkActiveOptions]="configRoute"
+      routerLinkActive="router-link-active"
+      routerLink="/"
+    >
+      New Company
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div
+      class="menu"
+      appCustomIcon
+      [data]="menuIcon"
+      (click)="sidenav.toggle()"
+    ></div>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

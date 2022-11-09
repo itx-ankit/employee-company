@@ -1,0 +1,44 @@
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.menu {
+  width: fit-content;
+  cursor: pointer;
+  padding: 40px;
+}
+
+.example-events {
+  width: 300px;
+  height: 200px;
+  overflow: auto;
+  border: 1px solid #555;
+}
+
+.mat-sidenav {
+  color: white;
+  width: 250px;
+  background: cadetblue;
+}
+
+.item-list {
+  height: 50px;
+  padding: 0 20px;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-style: oblique;
+}
+
+.item-list:hover {
+  background: #75b0b2;
+}
+
+.router-link-active {
+  background-color: #5a898a;
+}

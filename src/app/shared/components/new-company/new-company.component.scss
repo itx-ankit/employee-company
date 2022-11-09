@@ -1,0 +1,79 @@
+.skill-info-field {
+  padding: 40px;
+
+  .mat-form-field {
+    width: 100%;
+  }
+}
+.container {
+  min-width: 400px;
+}
+.heading {
+  font-weight: 500;
+  font-size: 1.2rem;
+  padding: 20px 0;
+}
+
+.skill-select {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 26px;
+
+  &:has(.mat-option.mat-active) {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+
+  .mat-option {
+    background: none;
+    flex: 1;
+
+    &.mat-active {
+      background: none !important;
+    }
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+}
+
+.icons-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 40px;
+
+  .icon {
+    width: 26px;
+    height: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    color: white;
+    margin: 0 5px;
+    cursor: pointer;
+
+    &.add-icon {
+      background: green;
+    }
+
+    &.trash-icon {
+      background: red;
+    }
+  }
+}
+
+.button-container {
+  padding: 20px 40px;
+}
+
+.custom-buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+
+  .mat-flat-button {
+    color: white;
+  }
+}

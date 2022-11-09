@@ -1,0 +1,107 @@
+<div class="container">
+  <div class="company-info">
+    <app-form-generate
+      [formGenerateInput]="companyFormData"
+      (formGroupRef)="companyFormGroupRef = $event"
+    ></app-form-generate>
+  </div>
+  <div class="employee-info">
+    <app-form-generate
+      [formGenerateInput]="employeeFormData"
+      (formGroupRef)="employeeFormGroupRef = $event"
+    ></app-form-generate>
+  </div>
+
+  <div class="skill-info-field">
+    <div class="heading">Skills Info</div>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Skills</mat-label>
+        <mat-select
+          [(ngModel)]="selectedSkills"
+          (selectionChange)="selectedSkills = $event.value"
+          multiple
+        >
+          <ng-container *ngFor="let skill of skillSets; let i = index">
+            <div class="skill-select">
+              <mat-option [value]="skill.skillName">
+                {{ skill.skillName }}
+              </mat-option>
+              <div>
+                <input
+                  #rating
+                  [(ngModel)]="skill.skillRating"
+                  type="number"
+                  [min]="minimumRatingValue"
+                  [max]="maximumRatingValue"
+                  (change)="ratingChanged(rating.value, i)"
+                />
+              </div>
+            </div>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="education-info">
+    <div [style.padding]="'20px 40px'" class="heading">Education Info</div>
+    <ng-container
+      *ngFor="
+        let data of educationFormData;
+        let i = index;
+        let isFirst = first;
+        let isLastIndex = last
+      "
+    >
+      <app-form-generate
+        [formGenerateInput]="data"
+        (formGroupRef)="educationFormGroupRef[i] = $event"
+      ></app-form-generate>
+      <div class="icons-container">
+        <div
+          class="icon add-icon"
+          appCustomIcon
+          [data]="addIcon"
+          *ngIf="isLastIndex"
+          (click)="addFields(i)"
+        ></div>
+        <div
+          class="icon trash-icon"
+          appCustomIcon
+          [data]="trashIcon"
+          *ngIf="
+            (isLastIndex && !isFirst) ||
+            (isFirst && !isLastIndex) ||
+            !(isFirst && isLastIndex)
+          "
+          (click)="deleteFields(i)"
+        ></div>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="button-container">
+    <app-button-container>
+      <ng-template appcustomButton>
+        <div class="custom-buttons">
+          <button mat-flat-button color="accent" (click)="submit()">
+            Submit and Next
+          </button>
+        </div>
+      </ng-template>
+      <ng-template appcustomButton>
+        <div class="custom-buttons">
+          <button
+            class="save"
+            mat-flat-button
+            color="accent"
+            (click)="submit(true)"
+          >
+            Submit and Save
+          </button>
+        </div>
+      </ng-template>
+    </app-button-container>
+  </div>
+</div>
