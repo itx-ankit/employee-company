@@ -59,7 +59,7 @@ export class TableGenrateComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     let tableData = this.cacheService.fetchAll() ?? {};
     if (!Object.keys(tableData).length || Object.keys(tableData).length < 10) {
-      tableData = { ...tableData, ...Helper.cloneDeep(companyData) };
+      tableData = { ...Helper.cloneDeep(companyData), ...tableData };
     }
     this.dataSource = new MatTableDataSource<any>(
       this.prepareTableData(tableData)
@@ -166,6 +166,10 @@ export class TableGenrateComponent implements OnInit, AfterViewInit {
           this.uniqueKey.get(JSON.stringify(data))
         );
         this.modal.closeModal(modalUniqueId);
+
+        const index = this.dataSource.data.indexOf(data);
+        this.dataSource.data.splice(index, 1, value);
+        this.dataSource._updateChangeSubscription();
       },
       formGroupEvent: this.formGroupRef,
     };
