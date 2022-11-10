@@ -1,6 +1,7 @@
 # EmployeeCompany
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
+
 This project is also deployed with the help of netlify @https://ankit-asse-pro.netlify.app/
 
 ## Development server
