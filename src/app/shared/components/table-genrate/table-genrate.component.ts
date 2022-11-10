@@ -202,6 +202,9 @@ export class TableGenrateComponent implements OnInit, AfterViewInit {
         }
         this.modal.closeModal(modalUniqueId);
       },
+      cancelButtonCallback: (formGroup: FormGroup) => {
+        this.modal.closeModal(modalUniqueId);
+      },
     };
     const modalData: IModalData = {
       modalName: 'Edit',
