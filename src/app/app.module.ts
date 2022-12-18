@@ -6,9 +6,8 @@ import { SideNavComponent } from './shared/components/side-nav/side-nav.componen
 import { NewCompanyComponent } from './shared/components/new-company/new-company.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './Modules/Shared/shared.module';
-import { ErrorPageComponent } from './shared/components/error-page/error-page.component';
 @NgModule({
-  declarations: [AppComponent, SideNavComponent, NewCompanyComponent, ErrorPageComponent],
+  declarations: [AppComponent, SideNavComponent, NewCompanyComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

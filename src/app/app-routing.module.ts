@@ -13,7 +13,7 @@ const routes: Routes = [
         (mod) => mod.CompanylistModule
       ),
   },
-  { path: '**', component: ErrorPageComponent },
+  { path: '**', loadComponent: () => ErrorPageComponent },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

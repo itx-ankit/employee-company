@@ -5,7 +5,6 @@ import { IFormGenerateInput } from './../../Interfaces/IFormGenerate';
 import { Component, OnInit } from '@angular/core';
 import { allSkillSet } from 'src/dummyData';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatSelectChange } from '@angular/material/select';
 import { CacheService } from '../../services/cache/cache.service';
 
 @Component({
