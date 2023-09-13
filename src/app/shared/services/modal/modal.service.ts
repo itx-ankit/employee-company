@@ -1,7 +1,6 @@
 import { IModalData } from './../../Interfaces/IModalData';
 import { Injectable, Component } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
